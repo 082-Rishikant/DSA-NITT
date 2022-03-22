@@ -14,13 +14,13 @@ struct node{
         }
 };
 
-int treeHeight(node* root) // O(n) where n is the number of nodes
+int Height(node* root) // O(n) where n is the number of nodes
 {
     if(root==NULL)
     {
         return 0;
     }
-    return max(treeHeight(root->left), treeHeight(root->right))+1;
+    return max(Height(root->left), Height(root->right))+1;
 }
 
 int treeDiameter(node* root, int &ans) // O(n) where n is the number of nodes
@@ -36,6 +36,21 @@ int treeDiameter(node* root, int &ans) // O(n) where n is the number of nodes
     return max(treeDiameter(root->left, ans), treeDiameter(root->right, ans))+1;
 }
 
+// int ans=0;
+// // Function to return the diameter of a Binary Tree.
+// int diameter(node* root) {
+//     if(root==NULL)
+//         return 0;
+    
+//     int leftHeight=Height(root->left);
+//     int rightHeight=Height(root->right);
+    
+//     int leftDiameter=diameter(root->left);
+//     int rightDiameter=diameter(root->right);
+    
+//     return max(leftHeight+rightHeight+1, max(leftDiameter, rightDiameter));
+// }
+
 int main()
 {
     node* root=new node(1);
@@ -45,7 +60,7 @@ int main()
     root->left->left->left=new node(6);
     root->right->right=new node(7);
 
-    cout<<treeHeight(root)<<endl; // O(n) where n is the number of nodes
+    cout<<Height(root)<<endl; // O(n) where n is the number of nodes
     int ans=0;
 
     treeDiameter(root, ans); // O(n) where n is the number of nodes
